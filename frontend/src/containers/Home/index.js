@@ -1,15 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import {bindActionCreators} from 'redux';
-import * as actions from '../../actions'
+// import * as actions from '../../actions'
+
+import * as authActions from '../../actions/auth'
 
 import FacebookLogin from 'react-facebook-login';
 
 class Home extends Component {
 
   componentWillMount() {
+    console.log('*****')
     console.log( this.props )
-    this.props.getHomePageData();
+
+
+
+    this.props.signUpRequest();
   }
 
   fetchInstagram = ( dd ) => {
@@ -118,7 +124,7 @@ const mapStateToProps = ( state ) => {
 }
 
 const mapDispatchToProps = ( dispatch ) => {
-  return bindActionCreators(actions, dispatch);
+  return bindActionCreators(authActions, dispatch);
 }
 
 export default connect( mapStateToProps, mapDispatchToProps )(Home)

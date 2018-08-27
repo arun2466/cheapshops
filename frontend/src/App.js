@@ -3,8 +3,12 @@ import {Provider} from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import store from './store';
+import saga from './sagas/'
+import { sagaMiddleware } from './middleware'
 
 import Home from './containers/Home/index'
+
+
 
 
 
@@ -21,3 +25,5 @@ class App extends Component {
 }
 
 export default App;
+
+// sagaMiddleware.run(saga)
