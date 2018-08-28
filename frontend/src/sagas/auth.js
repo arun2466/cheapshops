@@ -1,7 +1,9 @@
 import {takeLatest} from 'redux-saga/effects';
 import { signUpRequest, signUpRequestSuccess, signUpRequestFailed } from '../actions/auth'
 import * as constants from '../constants'
-import {call, put,all} from 'redux-saga/effects';
+import {call, put,all, takeEvery} from 'redux-saga/effects';
+
+import * as SERVICES from '../services'
 
 export function* watchSignUpRequest (action) {
   console.log( action)
@@ -9,7 +11,25 @@ export function* watchSignUpRequest (action) {
   console.log( action)
   console.log( action)
   console.log( action)
-  yield put(signUpRequestSuccess('ss'));
+
+  try {
+    console.log('----try')
+
+    const response = yield call( SERVICES.apiCall, 'POST', 'http://localhost/cheapshops/api/', {
+      action: 'login',
+      payload: action.payload
+    })
+
+    console.log('---response')
+    console.log(response)
+
+
+  } catch(e){
+    console.log('----catch')
+    console.log(e)
+  }
+
+  yield all(signUpRequestSuccess('ss'));
 }
 
 
@@ -26,3 +46,8 @@ export function* watchSignUpRequest (action) {
 //     watchActions()
 //   ];
 // }
+
+
+export const authSagas = [
+  takeEvery(constants.SIGN_UP_REQUEST, watchSignUpRequest),
+]

@@ -24,6 +24,15 @@
 
   echo '<pre>';
   print_r( $PARAMS );
+
+  $API_ACTION = false;
+
+  if( isset($PARAMS['action']) ){
+    $API_ACTION = $PARAMS['action'];
+  }
+
+  echo $API_ACTION;
+
   die;
 
 ?>

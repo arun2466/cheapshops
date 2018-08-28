@@ -5,7 +5,7 @@ import {bindActionCreators} from 'redux';
 
 import * as authActions from '../../actions/auth'
 
-import FacebookLogin from 'react-facebook-login';
+import AuthFacebookLogin from '../../components/auth/AuthFacebookLogin'
 
 class Home extends Component {
 
@@ -15,7 +15,7 @@ class Home extends Component {
 
 
 
-    this.props.signUpRequest();
+    // this.props.signUpRequest();
   }
 
   fetchInstagram = ( dd ) => {
@@ -100,18 +100,20 @@ console.log(nnn)
     console.log( data )
   }
 
+  _onSuccessLogin = (userInfo) => {
+    console.log('--userInfo')
+    console.log( userInfo)
+    this.props.signUpRequest(userInfo);
+  }
+
   render() {
     console.log( this.props )
     return (
       <div>
-      <h1>Home Page</h1>
-      <FacebookLogin
-    appId=""
-    autoLoad={true}
-    fields="name,email,picture"
-    // onClick={componentClicked}
-    scope="public_profile,manage_pages,pages_show_list,instagram_basic"
-    callback={this.success} />
+        <h1>Home Page</h1>
+        <AuthFacebookLogin
+          onSuccessLogin={this._onSuccessLogin}
+        />
       </div>
     )
   }

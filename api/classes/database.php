@@ -3,11 +3,10 @@
   class Database {
     private $_connection;
     public static $_instance; //The single instance
-    private $_host = "";
-    private $_username = "";
-    private $_password = "";
-    private $_database = "";
-    public $tdb = '';
+    private $_host = "localhost";
+    private $_username = "root";
+    private $_password = "arun";
+    private $_database = "cheapshops";
 
     public static function getInstance() {
       if(!self::$_instance) {
