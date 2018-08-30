@@ -15,7 +15,7 @@ export function* watchSignUpRequest (action) {
   try {
     console.log('----try')
 
-    const response = yield call( SERVICES.apiCall, 'POST', 'http://localhost/cheapshops/api/', {
+    const response = yield call( SERVICES.apiCall, 'POST', 'http://localhost/cheapshops/api/api.php', {
       action: 'login',
       payload: action.payload
     })

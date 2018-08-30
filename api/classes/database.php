@@ -1,12 +1,11 @@
 <?php
-  require_once '../../../connection.php';
-  class Database {
+  trait DATABASE {
     private $_connection;
     public static $_instance; //The single instance
-    private $_host = "localhost";
-    private $_username = "root";
-    private $_password = "arun";
-    private $_database = "cheapshops";
+    private $_host = "";
+    private $_username = "";
+    private $_password = "";
+    private $_database = "";
 
     public static function getInstance() {
       if(!self::$_instance) {
@@ -16,14 +15,14 @@
     }
 
     public function __construct() {
-      global $host;
-      global $user;
-      global $pass;
-      global $db;
-      $this->_host = $host;
-      $this->_username = $user;
-      $this->_password = $pass;
-      $this->_database = $db;
+      global $DB_host;
+      global $DB_username;
+      global $DB_password;
+      global $DB_database;
+      $this->_host = $DB_host;
+      $this->_username = $DB_username;
+      $this->_password = $DB_password;
+      $this->_database = $DB_database;
       $this->_connection = new mysqli($this->_host, $this->_username, $this->_password, $this->_database);
 
       if(mysqli_connect_error()) {
@@ -55,5 +54,4 @@
       return  $row_s;
     }
   }
-  new Database();
 ?>
