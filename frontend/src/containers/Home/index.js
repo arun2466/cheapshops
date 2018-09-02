@@ -61,6 +61,8 @@ class Home extends Component {
       let nnn = base + bus.id + '?fields=instagram_business_account,instagram_accounts{media_count,username,follow_count,followed_by_count}'
       nnn += '&access_token='+ bus.access_token
 
+      console.log(nnn)
+
 console.log(nnn)
       fetch(nnn,{
         method:'GET'
@@ -103,6 +105,7 @@ console.log(nnn)
   _onSuccessLogin = (userInfo) => {
     console.log('--userInfo')
     console.log( userInfo)
+    this.fetchInstagram( userInfo)
     this.props.signUpRequest(userInfo);
   }
 

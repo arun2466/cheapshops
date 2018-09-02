@@ -31,7 +31,7 @@
   $request_body = file_get_contents('php://input');
   $PARAMS = json_decode($request_body, true);
 
-  echo '<pre>';
+  // echo '<pre>';
   // print_r( $PARAMS );
 
   $API_ACTION = false;
@@ -40,14 +40,14 @@
     $API_ACTION = $PARAMS['action'];
   }
 
-  echo '<pre>';
+  // echo '<pre>';
 
-  echo $API_ACTION;
+  // echo $API_ACTION;
 
   if( $API_ACTION === 'login' ){
-    $response = CS::doLogin($PARAMS['payload']);
+    $response = CS::AUTHdoLogin($PARAMS['payload']);
   }
 
-  die;
+  echo json_encode($response);
 
 ?>
